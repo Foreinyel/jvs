@@ -11,7 +11,7 @@ export default () => {
     .addCommand(ls)
     .addCommand(set)
     .addCommand(open);
-  console.log(chalk.green("Hello Jarvis!"));
+  // console.log(chalk.green("Hello Jarvis!"));
   main.parse(process.argv);
 };
 

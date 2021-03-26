@@ -2,6 +2,7 @@ import fs from "fs";
 const os = require("os");
 import { cosmiconfig } from "cosmiconfig";
 import { strict as assert } from "assert";
+import chalk from "chalk";
 const HomePath = os.homedir();
 
 const ConfigFilePath = `${HomePath}/.jvs.json`;
@@ -67,6 +68,7 @@ export const setWorkspace = async (_path: string) => {
       : config[IConfigKey.WORKSPACE]
     : [path];
   saveConfig(config);
+  console.log(chalk.green(`Successfully set ${path} as workspace.`));
 };
 
 export const getConfig = (key: keyof IConfig) => {};
