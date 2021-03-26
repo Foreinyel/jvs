@@ -1,7 +1,16 @@
 import chalk from "chalk";
-import program from "./commands";
+import { Command } from "commander";
+import ls from "./_ls";
+import set from "./_set";
+import open from "./_open";
 
 export default () => {
+  const main = new Command();
+  main
+    .option("-p", "test option")
+    .addCommand(ls)
+    .addCommand(set)
+    .addCommand(open);
   console.log(chalk.green("Hello Jarvis!"));
-  console.info(program.parse(process.argv).opts());
+  main.parse(process.argv);
 };
