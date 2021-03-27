@@ -1,6 +1,6 @@
 {
   "name": "jvs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "bin": {
@@ -10,8 +10,13 @@
     "dev": "node dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "jvs",
+    "jarvis",
+    "project cli tools",
+    "cool cli"
+  ],
+  "author": "Foreinyel",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
