@@ -2,8 +2,9 @@ import chalk from "chalk";
 import { Command, description, option } from "commander";
 import ls from "./_ls";
 import set from "./_set";
-import open from "./_open";
+// import open from "./_open";
 import code from "./_code";
+import go from "./_go";
 
 export default () => {
   const main = new Command();
@@ -16,7 +17,7 @@ export default () => {
     // .option("-h, --help", "Display help for command")
     .addCommand(ls)
     .addCommand(set)
-    .addCommand(open)
+    // .addCommand(go)
     .addCommand(code);
   // console.log(chalk.green("Hello Jarvis!"));
   main.parse(process.argv);
