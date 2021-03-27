@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { Command } from "commander";
+import { Command, description } from "commander";
 import ls from "./_ls";
 import set from "./_set";
 import open from "./_open";
@@ -7,7 +7,11 @@ import open from "./_open";
 export default () => {
   const main = new Command();
   main
-    // .option("-h, --help", "display help for command")
+    .description(
+      `${chalk.green(
+        "jvs"
+      )} is a friend and chamberlain to front-end engineers, helps you to manage workflow and improve efficiency. Also, it makes you coooooler in work.`
+    )
     .addCommand(ls)
     .addCommand(set)
     .addCommand(open);
