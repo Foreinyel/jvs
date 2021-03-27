@@ -54,3 +54,13 @@ You can specify the fullname, path to the command. Also, you can enter part of t
 ```console
 jvs code [name]
 ```
+
+### fly to project path in terminal
+
+`jvs` provides hot commands for you to fly to any paths of projects, instead of typing `cd [long_fuzzy_path_to_project]`.
+
+First, you should add workspace and projects to `jvs`.
+
+Then, run `jvs hot` to add hot commands to PATH.
+
+At last, reopen Ternimal or refresh PATH to active hot commands

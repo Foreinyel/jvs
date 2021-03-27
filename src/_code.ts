@@ -32,7 +32,9 @@ const action = async (args: string = ".") => {
       type: "rawlist",
       name: "selectProject",
       message: "Which project do you want to open?",
-      choices: path.map((item) => `${item.project}(${item.path})`),
+      choices: path
+        .sort((p1, p2) => p2.closely! - p1.closely!)
+        .map((item) => `${item.project}(${item.path})`),
       // rawList: {
       //   choices: path.map((item) => `${item.project}(${item.path})`),
       // },

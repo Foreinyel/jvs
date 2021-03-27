@@ -40,12 +40,18 @@ export const findProject = async (projectName?: string) => {
         .forEach((prj) => {
           if (projectName) {
             const closely = natural.JaroWinklerDistance(prj, projectName);
-            if (closely >= 0.6) {
+            if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
+              found.push({
+                project: prj,
+                path: item,
+                closely: 0.9,
+              });
+            } else if (closely >= 0.6) {
               found.push({
                 workspace: item,
                 project: prj,
                 path: path.join(item, prj),
-                closely,
+                closely: closely < 0.6 ? 0.75 : closely,
               });
             }
           } else {
@@ -67,7 +73,13 @@ export const findProject = async (projectName?: string) => {
       const prj = pathSeped[pathSeped.length - 1];
       if (projectName) {
         const closely = natural.JaroWinklerDistance(prj, projectName);
-        if (closely >= 0.6) {
+        if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
+          found.push({
+            project: prj,
+            path: item,
+            closely: 0.9,
+          });
+        } else if (closely >= 0.6) {
           found.push({
             project: prj,
             path: item,
