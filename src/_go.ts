@@ -8,6 +8,7 @@ import { spawn } from "child_process";
 import { SPAWN_STATUS } from "./consts";
 import * as utils from "./utils";
 import inquirer from "inquirer";
+import os from "os";
 
 const runCdSync = async (_path: string) => {
   return new Promise((resolve) => {

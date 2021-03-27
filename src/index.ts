@@ -4,7 +4,7 @@ import ls from "./_ls";
 import set from "./_set";
 // import open from "./_open";
 import code from "./_code";
-import go from "./_go";
+import hot from "./_hot";
 
 export default () => {
   const main = new Command();
@@ -18,7 +18,8 @@ export default () => {
     .addCommand(ls)
     .addCommand(set)
     // .addCommand(go)
-    .addCommand(code);
+    .addCommand(code)
+    .addCommand(hot);
   // console.log(chalk.green("Hello Jarvis!"));
   main.parse(process.argv);
 };

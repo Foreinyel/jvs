@@ -4,6 +4,7 @@ import { strict as assert } from "assert";
 // import { ConfigFilePath } from "./consts";
 import { getWorkspaceAndProject, IConfigKey } from "./config";
 import natural from "natural";
+// import os from "os";
 
 export const isPathExist = (path: string) => fs.existsSync(path);
 
