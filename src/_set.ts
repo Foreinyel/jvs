@@ -20,10 +20,10 @@ const set = new Command("set")
       "Workspace"
     )}. A workspace contains multiple projects. See more with ${chalk.blue(
       "jvs set -h"
-    )}`,
+    )}.`,
     {
       path:
-        "needs a absolute path, however `.` and empty value will be set with `current path`",
+        "needs a absolute path, however `.` and empty value represent current path",
     }
   )
   .option("-w", "set path as Workspace")

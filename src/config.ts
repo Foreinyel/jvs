@@ -1,11 +1,11 @@
 import fs from "fs";
-const os = require("os");
+// const os = require("os");
+// import os from "os";
 import { cosmiconfig } from "cosmiconfig";
 import { strict as assert } from "assert";
 import chalk from "chalk";
-const HomePath = os.homedir();
-
-const ConfigFilePath = `${HomePath}/.jvs.json`;
+import { convertPath } from "./utils";
+import { ConfigFilePath } from "./consts";
 
 export enum IConfigKey {
   WORKSPACE = "workspaces",
@@ -54,11 +54,9 @@ export const setConfig = async (key: keyof IConfig, value: any) => {
   saveConfig(config);
 };
 
-const convertPath = (_path: string) => {
-  assert(!!_path, "Sir, path can't be null!");
-  const path = _path === "." ? process.cwd() : _path;
-  assert(fs.existsSync(_path), `Sir, path(${_path}) dose not exists!`);
-  return path;
+export const getConfig = async (key: keyof IConfig) => {
+  const config = await loadConfig();
+  console.log(`🚀 ~ file: config.ts ~ line 74 ~ getConfig ~ config`, config);
 };
 
 export const setWorkspaceAndProject = async (
@@ -76,4 +74,9 @@ export const setWorkspaceAndProject = async (
   console.log(chalk.green(`Successfully add ${path} to ${key}.`));
 };
 
-export const getConfig = (key: keyof IConfig) => {};
+export const getWorkspaceAndProject = async (
+  key: IConfigKey.WORKSPACE | IConfigKey.PROJECT
+) => {
+  const config = await loadConfig();
+  return config[key] || [];
+};

@@ -1,8 +1,9 @@
 import chalk from "chalk";
-import { Command, description } from "commander";
+import { Command, description, option } from "commander";
 import ls from "./_ls";
 import set from "./_set";
 import open from "./_open";
+import code from "./_code";
 
 export default () => {
   const main = new Command();
@@ -12,9 +13,11 @@ export default () => {
         "jvs"
       )} is a friend and chamberlain to front-end engineers, helps you to manage workflow and improve efficiency. Also, it makes you coooooler in work.`
     )
+    // .option("-h, --help", "Display help for command")
     .addCommand(ls)
     .addCommand(set)
-    .addCommand(open);
+    .addCommand(open)
+    .addCommand(code);
   // console.log(chalk.green("Hello Jarvis!"));
   main.parse(process.argv);
 };
