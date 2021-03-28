@@ -3,6 +3,7 @@
 `jvs` is a front-end project management tools. It helps you to:
 
 - quick open project with vscode
+- enter any project directly
 
 ## Install
 
@@ -63,4 +64,4 @@ First, you should add workspace and projects to `jvs`.
 
 Then, run `jvs hot` to add hot commands to PATH.
 
-At last, reopen Ternimal or refresh PATH to active hot commands
+At last, reopen Terminal or refresh PATH to active hot commands
