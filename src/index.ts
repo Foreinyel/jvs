@@ -5,10 +5,11 @@ import set from "./_set";
 // import open from "./_open";
 import code from "./_code";
 import hot from "./_hot";
-
+// import pkg from "../package.json";
 export default () => {
   const main = new Command();
   main
+    .version(require("../package.json").version)
     .description(
       `${chalk.green(
         "jvs"

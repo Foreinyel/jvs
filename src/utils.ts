@@ -43,7 +43,7 @@ export const findProject = async (projectName?: string) => {
             if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
               found.push({
                 project: prj,
-                path: item,
+                path: path.join(item, prj),
                 closely: 0.9,
               });
             } else if (closely >= 0.6) {

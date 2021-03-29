@@ -73,9 +73,9 @@ const printProject = async (name: string) => {
 };
 
 const action = async (name: string = "", opts: ILsOptions) => {
-  if (opts.w) {
+  if (opts.w && !opts.p) {
     await printWorkspace(name);
-  } else if (opts.p) {
+  } else if (opts.p && !opts.w) {
     await printProject(name);
   } else {
     await printWorkspace(name);
