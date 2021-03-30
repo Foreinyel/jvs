@@ -4,8 +4,15 @@ import { strict as assert } from "assert";
 // import { ConfigFilePath } from "./consts";
 import { getWorkspaceAndProject, IConfigKey } from "./config";
 import natural from "natural";
+import { PLATFORM } from "./consts";
+import chalk from "chalk";
+import { ITerminal } from "./interface";
+
 // import os from "os";
 
+const { platform } = process;
+
+// maybe it's better to use `fs.access` instead of `fs.existsSync`
 export const isPathExist = (path: string) => fs.existsSync(path);
 
 export const convertPath = (_path: string) => {
@@ -42,6 +49,7 @@ export const findProject = async (projectName?: string) => {
             const closely = natural.JaroWinklerDistance(prj, projectName);
             if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
               found.push({
+                workspace: item,
                 project: prj,
                 path: path.join(item, prj),
                 closely: 0.9,
@@ -106,3 +114,35 @@ export const padEnd = (text: string = "", length: number = 30) => {
   }
   return text.padEnd(length, " ");
 };
+
+/**
+ * @description 设置支持的平台
+ * @param platforms 命令支持平台
+ * @param name 命令名
+ * @returns
+ */
+export const Support = <T extends ITerminal>(
+  platforms: PLATFORM[],
+  name: string
+) => {
+  return (target: T, _: string, descriptor: PropertyDescriptor) => {
+    const originFunc = descriptor.value as Function;
+    descriptor.value = (...args: any[]) => {
+      if (platforms.includes(platform as PLATFORM)) {
+        originFunc.apply(target, args);
+      } else {
+        console.log(
+          chalk.red(`\n>> \`${name}\` not supported on ${platform}\n`)
+        );
+      }
+    };
+  };
+};
+
+// export const Title = (title: string) => {
+//   return <T extends { new (...args: any[]): {} }>(constructor: T) => {
+//     return class extends constructor {
+//       title = title;
+//     };
+//   };
+// };
