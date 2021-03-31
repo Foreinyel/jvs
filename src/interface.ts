@@ -3,5 +3,7 @@ export interface ITerminal {
 }
 
 export interface ITerminalOptions {
-  text?: string;
+  target?: string;
+  a?: string;
+  s?: string;
 }

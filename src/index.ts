@@ -4,6 +4,7 @@ import ls from "./_ls";
 import set from "./_set";
 import code from "./_code";
 import hot from "./_hot";
+import open from "./_open";
 import google from "./_google";
 
 export default () => {
@@ -19,7 +20,8 @@ export default () => {
     .addCommand(set)
     .addCommand(code)
     .addCommand(google)
-    .addCommand(hot);
+    .addCommand(hot)
+    .addCommand(open);
   main.parse(process.argv);
 };
 

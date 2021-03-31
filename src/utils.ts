@@ -128,13 +128,19 @@ export const Support = <T extends ITerminal>(
   return (target: T, _: string, descriptor: PropertyDescriptor) => {
     const originFunc = descriptor.value as Function;
     descriptor.value = (...args: any[]) => {
-      if (platforms.includes(platform as PLATFORM)) {
-        originFunc.apply(target, args);
-      } else {
-        console.log(
-          chalk.red(`\n>> \`${name}\` not supported on ${platform}\n`)
-        );
-      }
+      assert(
+        platforms.includes(platform as PLATFORM),
+        `Sir, \`${name}\` not supported on ${platform}`
+      );
+      originFunc.apply(target, args);
+      // if () {
+
+      // } else {
+      // console.log(
+      //   chalk.red(`\n>> \`${name}\` not supported on ${platform}\n`)
+      // );
+      // assert(`Sir, \`${name}\` not supported on ${platform}`);
+      // }
     };
   };
 };

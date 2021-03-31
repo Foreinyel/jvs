@@ -5,7 +5,7 @@ const { spawn } = require("child_process");
 const ora = require("ora");
 
 const SPAWN_STATUS_OK = 0;
-const SPAWN_STATUS_ERRIR = 1;
+const SPAWN_STATUS_ERRER = 1;
 
 const runTscSync = (path) => {
   return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ const runTscSync = (path) => {
     });
 
     cmd.stderr.on("data", (data) => {
-      reject(SPAWN_STATUS_ERRIR);
+      reject(SPAWN_STATUS_ERRER);
     });
 
     cmd.on("close", () => {
