@@ -2,6 +2,7 @@ import { PLATFORM, SPAWN_STATUS } from "./consts";
 import { Support } from "./utils";
 import { spawn } from "child_process";
 import { ITerminal, ITerminalOptions } from "./interface";
+import { getShortCut, IShortCut, setShortCut } from "./config";
 
 export enum OpenTarget {
   GOOGLE = "google",
@@ -66,13 +67,30 @@ class OpenAll implements ITerminal {
       // opts = `-a${options.a}`;
       opts = ["-a", options.a];
     }
-    let status = await runOpen(options.target, opts);
+    const { target } = options;
+    const _target = target === "." ? process.cwd() : target;
+    let status = -1;
+    // 先从保存的快捷键中查询
+    if (_target) {
+      const _shortCut = await getShortCut(_target);
+      if (_shortCut) {
+        status = await runOpen(_shortCut.target, _shortCut.opts);
+      }
+    }
+    if (status !== 0) {
+      status = await runOpen(_target, opts);
+    }
 
-    // 打开失败，尝试打开项目目录，打开app
-    // status = await runOpen();
-
-    // 如果打开的是网站，并且用户设置了保存快捷键
+    // 如果用户设置了保存快捷键
     // todo save to .jvs.json
+    if (status === 0 && options.s) {
+      const shortCut = {
+        key: options.s,
+        target: _target,
+        opts,
+      };
+      setShortCut(shortCut);
+    }
   }
 }
 

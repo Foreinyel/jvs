@@ -11,7 +11,7 @@ import inquirer from "inquirer";
 
 const runCodeSync = async (_path: string) => {
   return new Promise((resolve) => {
-    const cmd = spawn("code", ["."], {
+    const cmd = spawn("open", [".", "-a", "visual studio code"], {
       cwd: _path,
     });
 
@@ -52,12 +52,8 @@ const vscode = new Command("code")
     `${chalk.green(
       "jvs code"
     )} will search project in all workspaces and projects by project (folder) name and open it with ${chalk.green(
-      "vscode"
-    )}, it means to use this command you must install ${chalk.green(
       "visual studio code"
-    )} and install ${chalk.green(
-      "code"
-    )} command in PATH first. See https://code.visualstudio.com/docs/editor/command-line for details.`,
+    )}`,
     {
       project_name: `project folder name, \`.\` and empty value represent current path`,
     }

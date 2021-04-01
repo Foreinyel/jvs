@@ -1,8 +1,8 @@
 import { Command } from "commander";
 import openFactory, { OpenTarget } from "./open";
 
-const action = async (text: string | undefined) => {
-  openFactory(OpenTarget.GOOGLE).run({ text });
+const action = async (target: string | undefined) => {
+  openFactory(OpenTarget.GOOGLE).run({ target });
 };
 
 const google = new Command("google")

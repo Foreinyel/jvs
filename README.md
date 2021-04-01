@@ -1,6 +1,7 @@
 # jvs
 
-`jvs` is a front-end project management tools. It helps you to:
+`jvs` is a front-end project management tools. Mention that most of the Commands works well on Mac, Unix-Like systems, except on Windows. We will support win32 in the future.
+It helps you to:
 
 - quick open project with vscode
 - enter any project directly
@@ -65,3 +66,31 @@ First, you should add workspace and projects to `jvs`.
 Then, run `jvs hot` to add hot commands to PATH.
 
 At last, reopen Terminal or refresh PATH to active hot commands
+
+```console
+jvs hot
+```
+
+### google anything
+
+You can now google on Terminal, just type `jvs google [something]`, and it will open `google.com` with default web browser and display with searched content.
+
+```console
+jvs google [something]
+```
+
+### open whatever
+
+`jvs` dose a little improvements on command `open`, allows you to set short-cut for anything. It means you don't have to type the looooooong commands again:
+
+for the first time, open google with safari, add `-s google` to save this command as `google`:
+
+```console
+jvs open 'http://google.com' -a 'safari' -s google
+```
+
+for the rest of your life, just run `jvs open google`:
+
+```console
+jvs open google
+```
