@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "node dev.js",
+    "build": "npx rimraf lib && npx mkdirp lib && tsc",
     "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
