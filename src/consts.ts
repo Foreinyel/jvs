@@ -15,6 +15,7 @@ export enum PLATFORM {
 
 export const BashProfile = {
   [PLATFORM.DARWIN]: [
+    path.join(HomePath, ".zshenv"),
     path.join(HomePath, ".bash_profile"),
     path.join(HomePath, ".profile"),
     path.join(HomePath, ".bashrc"),
