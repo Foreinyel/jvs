@@ -6,6 +6,7 @@ import code from "./_code";
 import hot from "./_hot";
 import open from "./_open";
 import google from "./_google";
+import sc from "./_git_sc";
 
 export default () => {
   const main = new Command();
@@ -21,7 +22,8 @@ export default () => {
     .addCommand(code)
     .addCommand(google)
     .addCommand(hot)
-    .addCommand(open);
+    .addCommand(open)
+    .addCommand(sc);
   main.parse(process.argv);
 };
 
