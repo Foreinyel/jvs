@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 import git from "./simple-git";
 
 const action = async (target: string, source?: string) => {
-  console.log(`🚀 ~ file: _git_sc.ts ~ line 8 ~ action ~ target`, target);
   let targetOrigin = "origin";
   let sourceOrigin = "origin";
 
