@@ -1,39 +1,42 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import dayjs from "dayjs";
-import { spawn } from "child_process";
-import inquirer from "inquirer";
 
 import git from "./simple-git";
 
-import { SPAWN_STATUS } from "./consts";
-import * as utils from "./utils";
-const runCodeSync = async (_path: string) => {
-  return new Promise((resolve) => {
-    const cmd = spawn("open", [".", "-a", "visual studio code"], {
-      cwd: _path,
-    });
-
-    cmd.on("close", () => {
-      resolve(SPAWN_STATUS.SPAWN_STATUS_OK);
-    });
-  });
-};
-
 const action = async (target: string, source?: string) => {
+  console.log(`🚀 ~ file: _git_sc.ts ~ line 8 ~ action ~ target`, target);
+  let targetOrigin = "origin";
+  let sourceOrigin = "origin";
+
+  let targetBranch = target;
+  let sourceBranch: string | null | undefined = source;
+
+  if (target?.indexOf("/") > 0) {
+    const arr = target.split("/");
+    targetOrigin = arr[0];
+    targetBranch = arr[1];
+  }
+
+  if (source && source.indexOf("/") > 0) {
+    const arr = source!.split("/");
+    sourceOrigin = arr[0];
+    sourceBranch = arr[1];
+  }
+
   const status = await git.status();
-  const _sourceBranch = source || status.current;
-  const tmpBranchName = `merge_${_sourceBranch}_into_${target}_${dayjs().format(
-    "YYYYMMDDHH"
+  sourceBranch = source || status.current;
+  const tmpBranchName = `merge_${sourceBranch}_into_${targetBranch}_${dayjs().format(
+    "YYYYMMDDHHmm"
   )}`;
 
   // 从target分支创建一个临时分支
-  await git.checkoutBranch(tmpBranchName, `origin/${target}`);
+  await git.checkoutBranch(tmpBranchName, `${targetOrigin}/${targetBranch}`);
 
   console.log(`Created a new branch: ${chalk.green(tmpBranchName)}`);
 
-  await git.pull("origin", target);
-  await git.pull("origin", source);
+  await git.pull(targetOrigin, targetBranch);
+  await git.pull(sourceOrigin, sourceBranch!);
 };
 
 const sc = new Command("sc")
