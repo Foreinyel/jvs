@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Foreinyel/jvs/compare/v1.1.0...v1.2.0) (2022-04-14)
+
+
+### Features
+
+* sc ([c06a2be](https://github.com/Foreinyel/jvs/commit/c06a2be3a2bbe11872f7f13462b2f1fea797f7a3))
+
 ### [1.1.1](https://github.com/Foreinyel/jvs/compare/v1.1.0...v1.1.1) (2022-04-14)
 
 ## [1.1.0](https://github.com/Foreinyel/jvs/compare/v1.0.11...v1.1.0) (2021-12-02)
