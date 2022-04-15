@@ -25,9 +25,12 @@ const action = async (target: string, source?: string) => {
 
   const status = await git.status();
   sourceBranch = source || status.current;
-  const tmpBranchName = `merge_${sourceBranch}_into_${targetBranch}_${dayjs().format(
-    "YYYYMMDDHHmm"
-  )}`;
+  const tmpBranchName =
+    `merge_${sourceBranch}_into_${targetBranch}_${dayjs().format(
+      "YYYYMMDDHHmm"
+    )}`
+      .replace(/-/g, "_")
+      .replace(/\//g, "_");
 
   // 从target分支创建一个临时分支
   await git.checkoutBranch(tmpBranchName, `${targetOrigin}/${targetBranch}`);
