@@ -53,10 +53,7 @@ const runGitBr: () => Promise<Array<BranchInfo>> = () => {
 const action = async () => {
   try {
     const branchList = await runGitBr();
-    console.log(
-      `🚀 ~ file: _git_rb.ts ~ line 48 ~ action ~ branchList`,
-      branchList
-    );
+
     if (branchList.length) {
       const question = {
         type: "checkbox",
@@ -67,18 +64,11 @@ const action = async () => {
         ),
       };
       const { selectBranches } = await inquirer.prompt([question]);
-      console.log(
-        `🚀 ~ file: _git_rb.ts ~ line 59 ~ action ~ selectBranches`,
-        selectBranches
-      );
 
       const selectedBranches = (selectBranches as string[]).map(
         (item) => item.split(" - ")[0]
       );
-      console.log(
-        `🚀 ~ file: _git_rb.ts ~ line 65 ~ action ~ selectedBranches`,
-        selectedBranches
-      );
+
       await git.deleteLocalBranches(selectedBranches);
       console.log(`${chalk.green("Branches removed successfully.")}`);
     }
