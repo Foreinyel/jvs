@@ -94,3 +94,20 @@ for the rest of your life, just run `jvs open google`:
 ```console
 jvs open google
 ```
+
+### git solve conflicts
+
+`jvs` helps you to automaticly create a new branch based on target branch and a pull request from source branch.
+
+```console
+jvs sc master feature1
+```
+`jvs` will create a new branch named `merge_feature1_into_master_***` based on master, automaticly pull request from feature1.
+
+### git remove local branches
+
+`jvs` helps you to select multi local branches and delete them.
+
+```console
+jvs rb
+```

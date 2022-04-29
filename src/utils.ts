@@ -41,35 +41,37 @@ export const findProject = async (projectName?: string) => {
 
   if (workspaces.length > 0) {
     workspaces.forEach((item) => {
-      const projectList = fs.readdirSync(item);
-      projectList
-        .filter((item) => item.indexOf(".") < 0)
-        .forEach((prj) => {
-          if (projectName) {
-            const closely = natural.JaroWinklerDistance(prj, projectName);
-            if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
+      if (fs.existsSync(item)) {
+        const projectList = fs.readdirSync(item);
+        projectList
+          .filter((item) => item.indexOf(".") < 0)
+          .forEach((prj) => {
+            if (projectName) {
+              const closely = natural.JaroWinklerDistance(prj, projectName);
+              if (prj.indexOf(projectName) >= 0 && closely < 0.6) {
+                found.push({
+                  workspace: item,
+                  project: prj,
+                  path: path.join(item, prj),
+                  closely: 0.9,
+                });
+              } else if (closely >= 0.6) {
+                found.push({
+                  workspace: item,
+                  project: prj,
+                  path: path.join(item, prj),
+                  closely: closely < 0.6 ? 0.75 : closely,
+                });
+              }
+            } else {
               found.push({
                 workspace: item,
                 project: prj,
                 path: path.join(item, prj),
-                closely: 0.9,
-              });
-            } else if (closely >= 0.6) {
-              found.push({
-                workspace: item,
-                project: prj,
-                path: path.join(item, prj),
-                closely: closely < 0.6 ? 0.75 : closely,
               });
             }
-          } else {
-            found.push({
-              workspace: item,
-              project: prj,
-              path: path.join(item, prj),
-            });
-          }
-        });
+          });
+      }
     });
   }
 
