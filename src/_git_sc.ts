@@ -12,15 +12,15 @@ const action = async (target: string, source?: string) => {
   let sourceBranch: string | null | undefined = source;
 
   if (target?.indexOf("/") > 0) {
-    const arr = target.split("/");
-    targetOrigin = arr[0];
-    targetBranch = arr[1];
+    const spliterIndex = target.indexOf("/");
+    targetOrigin = target.slice(0, spliterIndex);
+    targetBranch = target.slice(spliterIndex + 1);
   }
 
   if (source && source.indexOf("/") > 0) {
-    const arr = source!.split("/");
-    sourceOrigin = arr[0];
-    sourceBranch = arr[1];
+    const spliterIndex = source.indexOf("/");
+    sourceOrigin = source.slice(0, spliterIndex);
+    sourceBranch = source.slice(spliterIndex + 1);
   }
 
   const status = await git.status();
