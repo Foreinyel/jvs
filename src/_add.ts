@@ -9,9 +9,10 @@ import path from "path";
 
 const runAdd = function (pkgs: string[]) {
   return new Promise((resolve, reject) => {
+    console.log(chalk.green(`running \`yarn add ${pkgs.join(" ")}\``));
     exec(`yarn add ${pkgs.join(" ")}`, (err, data) => {
       if (err) {
-        reject();
+        reject("");
       } else {
         resolve("");
       }
