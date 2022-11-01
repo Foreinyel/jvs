@@ -69,7 +69,7 @@ const action = async () => {
         (item) => item.split(" - ")[0]
       );
 
-      await git.deleteLocalBranches(selectedBranches);
+      await git.deleteLocalBranches(selectedBranches, true);
       console.log(`${chalk.green("Branches removed successfully.")}`);
     }
   } catch (err) {
