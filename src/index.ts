@@ -9,6 +9,7 @@ import google from "./_google";
 import sc from "./_git_sc";
 import rb from "./_git_rb";
 import add from "./_add";
+import cb from "./_git_cb";
 
 export default () => {
   const main = new Command();
@@ -27,7 +28,8 @@ export default () => {
     .addCommand(open)
     .addCommand(sc)
     .addCommand(rb)
-    .addCommand(add);
+    .addCommand(add)
+    .addCommand(cb);
   main.parse(process.argv);
 };
 
