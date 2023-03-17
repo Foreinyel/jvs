@@ -111,3 +111,11 @@ jvs sc master feature1
 ```console
 jvs rb
 ```
+
+### git create branch
+
+`jvs` helps you to create a new branch.
+
+```console
+jvs cb
+```
