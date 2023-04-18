@@ -13,7 +13,7 @@ const runGitConfig: (branchName: string, desc: string) => Promise<void> = (
   desc
 ) => {
   return new Promise((resolve, reject) => {
-    exec(`git config branch.${branchName}.description ${desc}`, (err) => {
+    exec(`git config branch.${branchName}.description '${desc}'`, (err) => {
       if (err) {
         reject();
       } else {
